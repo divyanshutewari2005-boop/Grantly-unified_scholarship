@@ -27,29 +27,25 @@ import { SettingsPage } from './pages/student/SettingsPage.tsx';
 import { OnboardingWizardPage } from './pages/student/OnboardingWizardPage.tsx';
 import { AdminPage } from './pages/admin/AdminPage.tsx';
 
-// Protect routes that require login
+// Protected routes
 const ProtectedRoute: React.FC = () => {
   const isAuthenticated = useProfileStore(
     (state) => state.isAuthenticated
   );
 
-  return isAuthenticated
-    ? <Outlet />
-    : <Navigate to="/auth" replace />;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/auth" replace />;
 };
 
-// Redirect authenticated users away from login
+// Public authentication routes
 const PublicRoute: React.FC = () => {
   const isAuthenticated = useProfileStore(
     (state) => state.isAuthenticated
   );
 
-  return isAuthenticated
-    ? <Navigate to="/dashboard" replace />
-    : <Outlet />;
+  return isAuthenticated ? <Navigate to="/dashboard" replace /> : <Outlet />;
 };
 
-// Shared dashboard layout
+// Dashboard layout
 const StudentLayout: React.FC<{
   children: React.ReactNode;
   showRightRail?: boolean;
@@ -60,25 +56,26 @@ const StudentLayout: React.FC<{
 );
 
 function AppRoutes() {
-  const isAuthenticated = useProfileStore(
-    (state) => state.isAuthenticated
-  );
-
   return (
     <Routes>
+      {/* Main homepage: Dashboard visible without login */}
+      <Route
+        path="/"
+        element={
+          <StudentLayout>
+            <DashboardPage />
+          </StudentLayout>
+        }
+      />
 
-      {/* Public routes */}
+      {/* Authentication */}
       <Route element={<PublicRoute />}>
         <Route path="/auth" element={<AuthPage />} />
       </Route>
 
-      {/* Protected student routes */}
+      {/* Protected pages */}
       <Route element={<ProtectedRoute />}>
-
-        <Route
-          path="/onboarding"
-          element={<OnboardingWizardPage />}
-        />
+        <Route path="/onboarding" element={<OnboardingWizardPage />} />
 
         <Route
           path="/dashboard"
@@ -178,31 +175,10 @@ function AppRoutes() {
             </StudentLayout>
           }
         />
-
       </Route>
 
-      {/* Default navigation */}
-      <Route
-        path="/"
-        element={
-          <Navigate
-            to={isAuthenticated ? "/dashboard" : "/auth"}
-            replace
-          />
-        }
-      />
-
       {/* Unknown routes */}
-      <Route
-        path="*"
-        element={
-          <Navigate
-            to={isAuthenticated ? "/dashboard" : "/auth"}
-            replace
-          />
-        }
-      />
-
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
