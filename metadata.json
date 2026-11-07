@@ -1,0 +1,6 @@
+{
+  "name": "Grantly - Scholarship Discovery & Management Platform",
+  "description": "One Student Profile. Every Relevant Scholarship. One Place to Manage Your Funding Journey for Indian Students.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
