@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+
+  --color-brand-sidebar-top: #2E1A6B;
+  --color-brand-sidebar-bottom: #4C2FB8;
+  --color-brand-sidebar-active: #6345D8;
+
+  --color-brand-primary: #4F46E5;
+  --color-brand-primary-dark: #3B1FC4;
+  --color-brand-accent: #7C5CF0;
+  
+  --color-brand-lavender-50: #FAF5FF;
+  --color-brand-lavender-100: #EDE9FE;
+  --color-brand-lavender-200: #DDD6FE;
+  --color-brand-lavender-300: #C4B5FD;
+
+  --color-brand-bg: #F5F3FF;
+  --color-brand-card: #FFFFFF;
+
+  --color-status-green: #10B981;
+  --color-status-amber: #F59E0B;
+  --color-status-rose: #F43F5E;
+  --color-status-sky: #0EA5E9;
+
+  --shadow-soft-xs: 0 1px 3px 0 rgba(76, 47, 184, 0.05);
+  --shadow-soft-sm: 0 4px 12px -2px rgba(76, 47, 184, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --shadow-soft-md: 0 12px 24px -4px rgba(76, 47, 184, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.03);
+  --shadow-soft-lg: 0 20px 32px -8px rgba(76, 47, 184, 0.12), 0 8px 16px -4px rgba(15, 23, 42, 0.04);
+  --shadow-glow-violet: 0 0 16px rgba(124, 92, 240, 0.35);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #F8F7FF;
+  color: #1E1B4B;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbars for dashboard and lists */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DDD6FE;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C4B5FD;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+/* GRANTLY dashboard polish */
+html { scroll-behavior: smooth; }
+body { background: #f8f7ff; }
+button, a { -webkit-tap-highlight-color: transparent; }
+.grantly-hero { isolation: isolate; }
+@media (max-width: 767px) {
+  .grantly-hero { min-height: 250px; }
+  .grantly-hero > div:last-child { opacity: .34; width: 58%; }
+  .grantly-hero > div:last-child img { right: -22%; }
+}
+@media (min-width: 1280px) {
+  .grantly-hero { min-height: 194px; }
+}
